@@ -1,0 +1,3 @@
+rootProject.name = 'Mstories'
+
+include ':app'
