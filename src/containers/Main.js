@@ -19,23 +19,35 @@ import {connect} from 'react-redux'
  class Main extends Component<{}> {
   constructor(props){
     super(props);
+    this.state={amount:0}
   }
-  getData(){
-    this.props.addData()
+  deposit(){
+    //this.refs['textInput1'].setNativeProps({text: ''});
+    this.props.deposit(this.state.amount)
   }
   onChangeText(text){
-  
-this.props.getText(text)
-
+  this.setState({amount:text})
   }
+  withdraw(){
+    this.props.withdraw(this.state.amount)
+  }
+  
   render() {
+   
     return (
       <View style={styles.container}>
         <View style={styles.childView}>
-      <CustomInput onChangeText={(text)=>{this.onChangeText(text)}}/>
+      <CustomInput 
+      refs={'textInput1'}
+      onChangeText={(text)=>{this.onChangeText(text)}}/>
       <View style={{marginTop:10,width:'60%'}}>
-      <CustomeButton onPress={()=>{this.getData()}} />
-      <Text>{this.props.text}</Text>
+      <CustomeButton  value="Deposit" onPress={()=>{this.deposit()}} />
+      <CustomeButton value="Withdraw" onPress={()=>{this.withdraw()}} />
+      <Text style={styles.indicatorText}>
+      hey Your Current Balance is:<Text style={styles.runningBal}>
+      {this.props.runningAmt}
+      </Text>
+      </Text>
       </View>
     </View>
       </View>
@@ -65,11 +77,21 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  indicatorText:{
+    color:'blue',
+    fontSize:14
+  },
+  runningBal:{
+    color:'red',
+    fontSize:22
+  }
 });
-const mapStateToProps=state=>({
-countData:state.countData,
-text:state.text,
-});
+const mapStateToProps=state=>{
+return{
+  countData:state.countData,
+  runningAmt:state.runningAmt,
+}
+}
 
 function mapDispatchToProps(dispatch){
 return bindActionCreators(ActionCreators,dispatch);

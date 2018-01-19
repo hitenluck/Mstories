@@ -8,11 +8,13 @@ import {
 } from 'react-native';
 
 class CustomeButton extends Component{
+ 
   render(){
+    
     return(
 
       <TouchableOpacity onPress={this.props.onPress} style={styles.button}>
-        <Text>Click me</Text>
+        <Text>{this.props.value}</Text>
       </TouchableOpacity>
 
     )
@@ -30,6 +32,7 @@ const styles = StyleSheet.create({
   borderRadius:16,
   borderWidth:1,
   height:40,
+  margin:10,
   justifyContent: 'center',
   alignItems: 'center'
   }

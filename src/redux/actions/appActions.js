@@ -1,14 +1,17 @@
 import * as constants from './constants'
 
-export function addData(){
+export function deposit(text){
 return{
-type:constants.GET_DATA
+  type:constants.DEPOSIT,
+  text
+}
+
+}
+export function withdraw(text){
+return{
+type:constants.WITHDRAW,
+text
 }
 }
 
-export function getText(text){
-return{
-  type:constants.GET_TEXT,
-  payload:text
-}
-}
+

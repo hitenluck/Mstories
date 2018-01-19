@@ -12,6 +12,7 @@ class CustomInput extends Component{
     return(
 
         <TextInput
+        ref={this.props.refs}
           onChangeText={this.props.onChangeText}
           underlineColorAndroid='transparent'
           placeholder='Enter amount'
