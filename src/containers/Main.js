@@ -1,8 +1,8 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+* Sample React Native App
+* https://github.com/facebook/react-native
+* @flow
+*/
 
 import React, { Component } from 'react';
 import {
@@ -16,84 +16,82 @@ import {ActionCreators} from '../redux/actions'
 import CustomInput from '../components/CustomInput';
 import CustomeButton from '../components/CustomeButton'
 import {connect} from 'react-redux'
- class Main extends Component<{}> {
+class Main extends Component<{}> {
   constructor(props){
     super(props);
     this.state={amount:0}
   }
   deposit(){
-    //this.refs['textInput1'].setNativeProps({text: ''});
     this.props.deposit(this.state.amount)
   }
+
   onChangeText(text){
-  this.setState({amount:text})
+    this.setState({amount:text})
   }
+
   withdraw(){
     this.props.withdraw(this.state.amount)
   }
-  
+
   render() {
-   
     return (
       <View style={styles.container}>
         <View style={styles.childView}>
-      <CustomInput 
-      refs={'textInput1'}
-      onChangeText={(text)=>{this.onChangeText(text)}}/>
-      <View style={{marginTop:10,width:'60%'}}>
-      <CustomeButton  value="Deposit" onPress={()=>{this.deposit()}} />
-      <CustomeButton value="Withdraw" onPress={()=>{this.withdraw()}} />
-      <Text style={styles.indicatorText}>
-      hey Your Current Balance is:<Text style={styles.runningBal}>
-      {this.props.runningAmt}
-      </Text>
-      </Text>
-      </View>
-    </View>
-      </View>
-    );
+          <CustomInput
+            onChangeText={(text)=>{this.onChangeText(text)}}/>
+            <View style={{marginTop:10,width:'60%'}}>
+              <CustomeButton  value="Deposit" onPress={()=>{this.deposit()}} />
+              <CustomeButton value="Withdraw" onPress={()=>{this.withdraw()}} />
+              <Text style={styles.indicatorText}>
+                hey Your Current Balance is:<Text style={styles.runningBal}>
+                  {this.props.runningAmt}
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </View>
+      );
+    }
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#F5FCFF',
+    },
+    welcome: {
+      fontSize: 20,
+      textAlign: 'center',
+      margin: 10,
+    },
+    childView:{
+      flex:1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    instructions: {
+      textAlign: 'center',
+      color: '#333333',
+      marginBottom: 5,
+    },
 
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  childView:{
-    flex:1,
-    justifyContent: 'center',
-    alignItems: 'center'
-
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  indicatorText:{
-    color:'blue',
-    fontSize:14
-  },
-  runningBal:{
-    color:'red',
-    fontSize:22
+    indicatorText:{
+      color:'blue',
+      fontSize:14
+    },
+    runningBal:{
+      color:'red',
+      fontSize:22
+    }
+  });
+  const mapStateToProps=state=>{
+    return{
+      countData:state.countData,
+      runningAmt:state.runningAmt,
+    }
   }
-});
-const mapStateToProps=state=>{
-return{
-  countData:state.countData,
-  runningAmt:state.runningAmt,
-}
-}
 
-function mapDispatchToProps(dispatch){
-return bindActionCreators(ActionCreators,dispatch);
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Main);
+  function mapDispatchToProps(dispatch){
+    return bindActionCreators(ActionCreators,dispatch);
+  }
+  export default connect(mapStateToProps,mapDispatchToProps)(Main);

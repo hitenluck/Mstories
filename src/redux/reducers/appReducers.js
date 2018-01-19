@@ -8,9 +8,5 @@ export const runningAmt=createReducer(0,{
   [constants.WITHDRAW](state,action){
     return  state-parseInt(action.text)
   }
-  
+
 });
-
-
-
-
