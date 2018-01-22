@@ -27,7 +27,7 @@ class Main extends Component<{}> {
     this.props.deposit(this.state.amount)
   }
 
-  onChangeKey(text){
+  onChangeKey=(text)=>{
     console.log(text)
     this.state.amount=text
   }
@@ -36,6 +36,7 @@ class Main extends Component<{}> {
     this.props.withdraw(this.state.amount)
   }
 
+
   render() {
     return (
       <View style={styles.container}>
@@ -43,7 +44,7 @@ class Main extends Component<{}> {
 
           <CustomInput
             ref={(node) => { this.tagInput = node; }}
-            onChange={this.onChangeKey.bind(this)}/>
+            onChange={this.onChangeKey}/>
 
           <View style={{marginTop:10,width:'60%'}}>
             <CustomeButton
