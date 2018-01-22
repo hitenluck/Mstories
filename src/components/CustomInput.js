@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
-  Text,
   View,
   TextInput
 } from 'react-native';
@@ -37,6 +35,7 @@ class CustomInput extends Component{
   }
   render(){
     return(
+<<<<<<< HEAD
       <TextInput
         ref={(node) => { this.searchInput = node; }}
         onChangeText={this._onChangeText.bind(this)}
@@ -44,16 +43,17 @@ class CustomInput extends Component{
         placeholder='Enter amount'
 
         style={styles.inputStyle}/>
+=======
+        <TextInput
+          onChangeText={this.props.onChangeText}
+          underlineColorAndroid='transparent'
+          placeholder='Enter amount'
+          style={styles.inputStyle}/>
+>>>>>>> 5da3dcf650ff015a4db07fafb201c21209cdcf0c
     )
   }
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   inputStyle:{
     width:'80%',
     borderBottomWidth:1,
